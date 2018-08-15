@@ -1,0 +1,31 @@
+<?php
+/**
+ * @category  Bunited
+ * @package   Bunited\SimpleOptions
+ * @author    Berin Kozlic - beringgmu@gmail.com
+ * @copyright 2018 Berin Kozlic
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+ /** @var $block \Bunited\SimpleOptions\Block\Product\Renderer\Configurable */
+ ?>
+
+<div class="swatch-opt" data-role="swatch-options"></div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "simpleOptionsSwatch": {
+                "jsonConfig": <?= /* @escapeNotVerified */ $swatchOptions = $block->getJsonConfig(); ?>,
+                "jsonSimpleConfig": <?= /* @escapeNotVerified */ $block->getJsonSimpleConfig(); ?>,
+                "jsonModuleConfig": <?= /* @escapeNotVerified */ $block->getJsonModuleConfig(); ?>,
+                "jsonSwatchConfig": <?= /* @noEscape */ $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?= /* @escapeNotVerified */ $block->getMediaCallback(); ?>",
+                "gallerySwitchStrategy": "<?= /* @escapeNotVerified */ $block->getGallerySwitchStrategy(); ?>"
+            },
+            "Magento_Swatches/js/configurable-customer-data": {
+                "swatchOptions": <?= /* @noEscape */ $swatchOptions; ?>
+            }
+        }
+    }
+</script>

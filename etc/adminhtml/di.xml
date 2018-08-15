@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  Bunited
+ * @package   Bunited\SimpleOptions
+ * @author    Berin Kozlic - beringgmu@gmail.com
+ * @copyright 2018 Berin Kozlic
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="simpleModifierTab" xsi:type="array">
+                    <item name="class" xsi:type="string">
+                        Bunited\SimpleOptions\Ui\DataProvider\Product\Form\Modifier\SimpleModifier
+                    </item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

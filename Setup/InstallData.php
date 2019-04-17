@@ -9,12 +9,13 @@
 
 namespace Bunited\SimpleOptions\Setup;
 
+use Magento\Catalog\Model\Product;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Eav\Setup\EavSetup;
-use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 
 /**
  * Class InstallData
@@ -30,7 +31,7 @@ class InstallData implements InstallDataInterface
     /**
      * Constructor
      *
-     * @param \Magento\Eav\Setup\EavSetupFactory $eavSetupFactory
+     * @param EavSetupFactory $eavSetupFactory
      */
     public function __construct(EavSetupFactory $eavSetupFactory)
     {
@@ -47,7 +48,7 @@ class InstallData implements InstallDataInterface
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 
         $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
+            Product::ENTITY,
             'simple_product_field',
             [
                 'type'          => 'varchar',

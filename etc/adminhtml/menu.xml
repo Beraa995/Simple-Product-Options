@@ -10,8 +10,12 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Bunited_SimpleOptions::simpleoptions" title="Simple Options"
+        <add id="Bunited_SimpleOptions::head" title="Simple Options"
              module="Bunited_SimpleOptions" resource="Bunited_SimpleOptions::simpleoptions"
-             translate="title" sortOrder="10" parent="Bunited_Core::bunited" action="adminhtml/system_config/edit/section/simple_tab_general" />
+             translate="title" sortOrder="10" parent="Bunited_Core::bunited" />
+
+        <add id="Bunited_SimpleOptions::simpleoptions" title="General"
+             module="Bunited_SimpleOptions" resource="Bunited_SimpleOptions::simpleoptions"
+             translate="title" sortOrder="10" parent="Bunited_SimpleOptions::head" action="adminhtml/system_config/edit/section/simple_tab_general" />
     </menu>
 </config>

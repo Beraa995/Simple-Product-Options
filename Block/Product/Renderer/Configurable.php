@@ -3,28 +3,33 @@
  * @category  Bunited
  * @package   Bunited\SimpleOptions
  * @author    Berin Kozlic - beringgmu@gmail.com
- * @copyright 2018 Berin Kozlic
+ * @copyright 2019 Berin Kozlic
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Bunited\SimpleOptions\Block\Product\Renderer;
 
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Swatches\Block\Product\Renderer\Configurable as ConfigurableProduct;
+use Bunited\SimpleOptions\Helper\Data as SimpleData;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Helper\Product as CatalogProduct;
+use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ProductRepository;
 use Magento\ConfigurableProduct\Helper\Data;
 use Magento\ConfigurableProduct\Model\ConfigurableAttributeData;
 use Magento\Customer\Helper\Session\CurrentCustomer;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Json\EncoderInterface;
+use Magento\Framework\Json\Helper\Data as JsonData;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\ArrayUtils;
+use Magento\Swatches\Block\Product\Renderer\Configurable as ConfigurableProduct;
 use Magento\Swatches\Helper\Data as SwatchData;
 use Magento\Swatches\Helper\Media;
-use Magento\Catalog\Model\ProductRepository;
-use Bunited\SimpleOptions\Helper\Data as SimpleData;
-use Magento\Framework\Json\Helper\Data as JsonData;
 
+/**
+ * Class Configurable
+ * @package Bunited\SimpleOptions\Block\Product\Renderer
+ */
 class Configurable extends ConfigurableProduct
 {
     /**
@@ -40,21 +45,21 @@ class Configurable extends ConfigurableProduct
     /**
      * Simple Options Helper
      *
-     * @var \Bunited\SimpleOptions\Helper\Data
+     * @var Data
      */
     protected $simpleData;
 
     /**
      * Product repository
      *
-     * @var \Magento\Catalog\Model\ProductRepository
+     * @var ProductRepository
      */
     protected $productRepository;
 
     /**
      * Json helper
      *
-     * @var \Magento\Framework\Json\Helper\Data
+     * @var JsonData
      */
     protected $jsonHelper;
 
@@ -139,7 +144,7 @@ class Configurable extends ConfigurableProduct
      * Composes simple product configuration for js
      *
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getJsonSimpleConfig()
     {
@@ -172,10 +177,10 @@ class Configurable extends ConfigurableProduct
     /**
      * Return chosen simple product id
      *
-     * @param \Magento\Catalog\Model\Product $product
+     * @param Product $product
      *
      * @return boolean | int
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     protected function getSimpleProductId($product)
     {
@@ -193,7 +198,7 @@ class Configurable extends ConfigurableProduct
      * Return product simple values
      *
      * @return array
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     protected function getSimpleUpdates()
     {

@@ -3,7 +3,7 @@
  * @category  Bunited
  * @package   Bunited\SimpleOptions
  * @author    Berin Kozlic - beringgmu@gmail.com
- * @copyright 2018 Berin Kozlic
+ * @copyright 2019 Berin Kozlic
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -11,6 +11,10 @@ namespace Bunited\SimpleOptions\Block\Adminhtml\Form\Field;
 
 use Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray;
 
+/**
+ * Class Attributes
+ * @package Bunited\SimpleOptions\Block\Adminhtml\Form\Field
+ */
 class Attributes extends AbstractFieldArray
 {
     /**

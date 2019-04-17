@@ -11,7 +11,6 @@ define([
     'jquery/ui',
     'Magento_ConfigurableProduct/js/configurable'
 ], function($){
-
     $.widget('bunited.simpleOptionsConfigurable', $.mage.configurable, {
         /**
          * Creates widget
@@ -120,8 +119,8 @@ define([
                     let $select = $(this),
                         $optionElement = $select.find('option:not([disabled])').first();
 
-                    if (!$optionElement.val()) {
-                        $optionElement = $optionElement.next('option:not([disabled])');
+                    if (!$optionElement.val() > 0 || $optionElement.val() !== "") {
+                        $optionElement = $optionElement.nextAll('option:not([disabled])').first();
                     }
 
                     $select.val($optionElement.val());

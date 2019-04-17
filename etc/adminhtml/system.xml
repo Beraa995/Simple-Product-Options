@@ -15,7 +15,7 @@
         </tab>
 
         <section id="simple_tab_general" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Simple Options Configuration</label>
+            <label>Simple Options</label>
             <tab>bunited</tab>
             <resource>Bunited_SimpleOptions::simpleoptions</resource>
 

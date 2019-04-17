@@ -9,7 +9,13 @@
 
 namespace Bunited\SimpleOptions\Model\Config\Source;
 
-class GallerySwitch implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Option\ArrayInterface;
+
+/**
+ * Class GallerySwitch
+ * @package Bunited\SimpleOptions\Model\Config\Source
+ */
+class GallerySwitch implements ArrayInterface
 {
     /**
      * Return option array

@@ -11,7 +11,6 @@ define([
     'jquery/ui',
     'Magento_Swatches/js/swatch-renderer'
 ], function($){
-
     $.widget('bunited.simpleOptionsSwatch', $.mage.SwatchRenderer, {
         /**
          * @private
@@ -164,23 +163,15 @@ define([
                         $optionsWrapper = $wrapper.find('.' + classes.attributeOptionsWrapper);
 
                     if ($optionsWrapper.children().is('div')) {
-                        let $optionElement = $wrapper.find('.' + classes.optionClass + '[option-id="' + optionId + '"]'),
-                            $label = $wrapper.find('.' + classes.attributeSelectedOptionLabelClass),
-                            $input = $wrapper.find('.' + classes.attributeInput);
+                        let $optionElement = $wrapper.find('.' + classes.optionClass + '[option-id="' + optionId + '"]');
 
-                        $optionElement.addClass('selected');
-                        $wrapper.attr('option-selected', optionId);
-                        $label.text($optionElement.attr('option-label'));
-                        $input.attr('data-attr-name', widget._getAttributeCodeById($wrapper.attr('attribute-id')));
-                        $input.attr('value', $optionElement.attr('option-id'));
+                        $optionElement.click();
                     } else {
                         let $select = $optionsWrapper.find('select'),
-                            $optionElement = $optionsWrapper.find('select option[option-id="' + optionId + '"]'),
-                            $input = $wrapper.find('.' + classes.attributeInput);
+                            $optionElement = $optionsWrapper.find('select option[option-id="' + optionId + '"]');
 
-                        $wrapper.attr('option-selected', optionId);
-                        $input.val($optionElement.val());
                         $select.val($optionElement.val());
+                        $select.change();
                     }
                 });
             } else {
@@ -189,24 +180,19 @@ define([
                         $optionsWrapper = $wrapper.find('.' + classes.attributeOptionsWrapper);
 
                     if ($optionsWrapper.children().is('div')) {
-                        let $optionElement = $wrapper.find('.' + classes.optionClass + ':not([disabled])').first(),
-                            $label = $wrapper.find('.' + classes.attributeSelectedOptionLabelClass),
-                            $input = $wrapper.find('.' + classes.attributeInput);
+                        let $optionElement = $wrapper.find('.' + classes.optionClass + ':not([disabled])').first();
 
-                        $optionElement.addClass('selected');
-                        $wrapper.attr('option-selected', $optionElement.attr('option-id'));
-                        $label.text($optionElement.attr('option-label'));
-                        $input.attr('data-attr-name', widget._getAttributeCodeById($wrapper.attr('attribute-id')));
-                        $input.attr('value', $optionElement.attr('option-id'));
+                        $optionElement.click();
                     } else {
                         let $select = $optionsWrapper.find('select'),
-                            $optionElement = $optionsWrapper.find('select option:not([disabled])').first(),
-                            $option = $optionElement.val() > 0 ? $optionElement : $optionElement.next('option:not([disabled])'),
-                            $input = $wrapper.find('.' + classes.attributeInput);
+                            $optionElement = $optionsWrapper.find('select option:not([disabled])').first();
 
-                        $wrapper.attr('option-selected', $option.attr('option-id'));
-                        $input.val($option.val());
-                        $select.val($option.val());
+                        if (!$optionElement.val() > 0 || $optionElement.val() !== "") {
+                            $optionElement = $optionElement.nextAll('option:not([disabled])').first();
+                        }
+
+                        $select.val($optionElement.val());
+                        $select.change();
                     }
                 });
             }
@@ -246,11 +232,13 @@ define([
                 if (simpleConfig) {
                     key = _.findKey($widget.options.jsonConfig.index, options);
 
-                    let content = simpleConfig.attributes[key];
+                    if (key) {
+                        let content = simpleConfig.attributes[key];
 
-                    for (let i = 0; i < content['length']; i++) {
-                        if ($(content['identity'][i]).length && content['value'][i]) {
-                            $(content['identity'][i]).html(content['value'][i]);
+                        for (let i = 0; i < content['length']; i++) {
+                            if ($(content['identity'][i]).length && content['value'][i]) {
+                                $(content['identity'][i]).html(content['value'][i]);
+                            }
                         }
                     }
                 }

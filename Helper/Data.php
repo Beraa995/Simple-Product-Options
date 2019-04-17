@@ -9,8 +9,9 @@
 
 namespace Bunited\SimpleOptions\Helper;
 
-use \Magento\Framework\App\Helper\AbstractHelper;
-use \Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Simple Options Data Helper
@@ -26,12 +27,12 @@ class Data extends AbstractHelper
     /**
      * Extension config
      *
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var ScopeConfigInterface
      */
     protected $config;
 
     /**
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
+     * @param ScopeConfigInterface $config
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -47,7 +48,7 @@ class Data extends AbstractHelper
      */
     public function isEnabled()
     {
-        return $this->config->getValue(self::XML_PATH_ENABLED);
+        return $this->config->getValue(self::XML_PATH_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -57,7 +58,7 @@ class Data extends AbstractHelper
      */
     public function getPreselected()
     {
-        return $this->config->getValue(self::XML_PATH_PRESELECTED);
+        return $this->config->getValue(self::XML_PATH_PRESELECTED, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -67,7 +68,7 @@ class Data extends AbstractHelper
      */
     public function getSimpleUpdate()
     {
-        return $this->config->getValue(self::XML_PATH_SIMPLE_UPDATE);
+        return $this->config->getValue(self::XML_PATH_SIMPLE_UPDATE, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -77,7 +78,7 @@ class Data extends AbstractHelper
      */
     public function getGallerySwitchStrategy()
     {
-        return $this->config->getValue(self::XML_PATH_GALLERY);
+        return $this->config->getValue(self::XML_PATH_GALLERY, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -87,6 +88,6 @@ class Data extends AbstractHelper
      */
     public function getSimpleAttributes()
     {
-        return $this->config->getValue(self::XML_PATH_ATTRIBUTES);
+        return $this->config->getValue(self::XML_PATH_ATTRIBUTES, ScopeInterface::SCOPE_STORE);
     }
 }

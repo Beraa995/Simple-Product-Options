@@ -9,14 +9,19 @@
 
 namespace Bunited\SimpleOptions\Ui\DataProvider\Product\Form\Modifier;
 
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Model\Locator\LocatorInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
-use Magento\Catalog\Model\Locator\LocatorInterface;
-use Magento\Ui\Component\Form\Fieldset;
-use Magento\Ui\Component\Form\Field;
-use Magento\Ui\Component\Form\Element\Select;
 use Magento\Ui\Component\Form\Element\DataType\Text;
+use Magento\Ui\Component\Form\Element\Select;
+use Magento\Ui\Component\Form\Field;
+use Magento\Ui\Component\Form\Fieldset;
 
+/**
+ * Class SimpleModifier
+ * @package Bunited\SimpleOptions\Ui\DataProvider\Product\Form\Modifier
+ */
 class SimpleModifier extends AbstractModifier
 {
     /**
@@ -25,7 +30,7 @@ class SimpleModifier extends AbstractModifier
     private $locator;
 
     /**
-     * @param \Magento\Catalog\Model\Locator\LocatorInterface $locator
+     * @param LocatorInterface $locator
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -72,7 +77,7 @@ class SimpleModifier extends AbstractModifier
     /**
      * Get current product
      *
-     * @return \Magento\Catalog\Api\Data\ProductInterface
+     * @return ProductInterface
      */
     public function getProduct()
     {
@@ -119,17 +124,19 @@ class SimpleModifier extends AbstractModifier
      */
     public function getSimpleProductOptions()
     {
-        $simpleProducts = array();
+        $simpleProducts = [];
         $selectedName = null;
         $configurableOption = $this->getProduct()->getData('simple_product_field');
         $disabled = ['value' => 0, 'label' => 'Disabled'];
 
         foreach ($this->getSimpleProducts() as $index => $product) {
-            if ($configurableOption !== $product->getData('entity_id')) {
-                $simpleProducts[$index]['value'] = $product->getData('entity_id');
-                $simpleProducts[$index]['label'] = $product->getData('name').' - '.$product->getData('sku');
-            } else {
-                $selectedName = $product->getData('name').' - '.$product->getData('sku');
+            if ($product->getData('status') == 1) {
+                if ($configurableOption !== $product->getData('entity_id')) {
+                    $simpleProducts[$index]['value'] = $product->getData('entity_id');
+                    $simpleProducts[$index]['label'] = $product->getData('name') . ' - ' . $product->getData('sku');
+                } else {
+                    $selectedName = $product->getData('name') . ' - ' . $product->getData('sku');
+                }
             }
         }
 

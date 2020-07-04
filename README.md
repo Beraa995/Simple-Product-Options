@@ -41,8 +41,3 @@ Add attributes to update as much as you want <br />
 #### Choose specific simple product for preselect in admin
 
 <img src="https://i.imgur.com/4d0V2ph.png" alt="product admin" width="1300px">
-
-## Author
-
-Berin Kozlić - <beringgmu@gmail.com><br />
-You can hire me on [UPWORK](https://www.upwork.com/o/profiles/users/_~01b90298a30d9aeeb9/).
